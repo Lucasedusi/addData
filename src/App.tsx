@@ -1,43 +1,49 @@
-import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+import { useState } from "react";
 
-interface User {
+interface Props {
 	name: string;
 	description: string;
-	avatarUrl: string;
 }
 
-const users: User[] = [
-	{
-		name: "João Silva",
-		description: "Programador experiente em JavaScript",
-		avatarUrl: "https://via.placeholder.com/150",
-	},
-	{
-		name: "Maria Santos",
-		description: "Designer gráfico com habilidades em UI/UX",
-		avatarUrl: "https://via.placeholder.com/150",
-	},
-	{
-		name: "Pedro Almeida",
-		description: "Gerente de projetos com experiência em metodologias ágeis",
-		avatarUrl: "https://via.placeholder.com/150",
-	},
-];
+function App() {
+	const [name, setName] = useState("");
+	const [description, setDescription] = useState("");
+	const [dados, setDados] = useState<Props[]>([]);
 
-const UserItem = () => {
+	function handleAddProducts() {
+		setDados([...dados, { name, description }]);
+		setName("");
+		setDescription("");
+	}
+
 	return (
-		<Box>
-			{users.map((user, index) => (
-				<Flex alignItems="center" mb={4}>
-					<Avatar mr={4} size="md" src={user.avatarUrl} />
-					<Box>
-						<Text fontWeight="bold">{user.name}</Text>
-						<Text>{user.description}</Text>
-					</Box>
-				</Flex>
-			))}
-		</Box>
-	);
-};
+		<>
+			<form onSubmit={(e) => e.preventDefault()}>
+				<input
+					type="text"
+					value={name}
+					onChange={(e) => setName(e.target.value)}
+				/>
+				<input
+					type="text"
+					value={description}
+					onChange={(e) => setDescription(e.target.value)}
+				/>
+				<button type="submit" onClick={handleAddProducts}>
+					Add Product
+				</button>
+			</form>
 
-export default UserItem;
+			{dados.map((dado) => {
+				return (
+					<>
+						<p>{dado.name}</p>
+						<p>{dado.description}</p>
+					</>
+				);
+			})}
+		</>
+	);
+}
+
+export default App;
