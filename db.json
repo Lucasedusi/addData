@@ -1,32 +1,24 @@
 {
-  "products": [
+  "users": [
     {
       "id": 1,
       "name": "Product 1",
-      "price": 10
+      "email": "lucas@gmail.com"
     },
     {
       "id": 2,
       "name": "Product 2",
-      "price": 20
+      "email": "jose@gmail.com"
     },
     {
-      "name": "dsds",
-      "price": "dsds",
-      "id": 3
+      "id": 3,
+      "name": "joserfdfd",
+      "email": "dsdsds"
     },
     {
-      "name": "sasa",
-      "price": "asaa",
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "name": "sds",
-      "price": "dsds",
-      "id": 6
+      "id": 4,
+      "name": "leila",
+      "email": "3222"
     }
   ]
 }
