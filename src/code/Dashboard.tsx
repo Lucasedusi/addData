@@ -36,12 +36,12 @@ export const CustomModal = () => {
 		setIsOpen(false);
 	};
 
-	const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSave = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		const newProduct = { name, price };
 
-		axios
+		await axios
 			.post<ProductProps>("http://localhost:3000/products", newProduct)
 			.then(({ data }) => setProducts([...products, data]));
 
