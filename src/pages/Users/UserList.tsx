@@ -7,13 +7,27 @@ import { User } from "../../interfaces/User";
 export function UserList() {
 	const [users, setUsers] = useState<User[]>([]);
 
-	const navigate = useNavigate();
-
 	useEffect(() => {
-		axios.get<User[]>("http://localhost:3000/users").then((response) => {
-			setUsers(response.data);
-		});
+		const getUser = () => {
+			try {
+				axios.get<User[]>("http://localhost:3000/users").then((response) => {
+					setUsers(response.data);
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		getUser();
 	}, []);
+
+	function handleRemoveUser(id: number) {
+		axios.delete(`http://localhost:3000/users/${id}`);
+
+		const removeUser = users.filter((task) => task.id !== id);
+
+		setUsers(removeUser);
+	}
 
 	return (
 		<div>
@@ -38,7 +52,7 @@ export function UserList() {
 								</Link>
 							</td>
 							<td>
-								<button>
+								<button type="button" onClick={() => handleRemoveUser(user.id)}>
 									<FaTrash />
 								</button>
 							</td>
