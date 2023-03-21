@@ -1,24 +1,19 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Product 1",
-      "email": "lucas@gmail.com"
+      "name": "Núbia",
+      "email": "nubia@gmail.",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Product 2",
-      "email": "jose@gmail.com"
+      "name": "kamyla",
+      "email": "kamylla@gmail.com",
+      "id": 2
     },
     {
-      "name": "",
-      "email": "",
+      "name": "Lucas",
+      "email": "Eduardo",
       "id": 3
-    },
-    {
-      "name": "oi",
-      "email": "323",
-      "id": 4
     }
   ]
 }

@@ -15,17 +15,20 @@ export function UserCreate() {
 	const navigate = useNavigate();
 
 	const addProducts: SubmitHandler<User> = async (data) => {
-		const newProduct: User = {
-			id: data.id + 1,
-			name: data.name,
-			email: data.email,
-		};
+		try {
+			const newProduct: User = {
+				id: data.id + 1,
+				name: data.name,
+				email: data.email,
+			};
 
-		await axios
-			.post<User>("http://localhost:3000/users", newProduct)
-			.then(({ data }) => setUsers([...users, data]));
-
-		navigate("/");
+			await axios
+				.post<User>("http://localhost:3000/users", newProduct)
+				.then(({ data }) => setUsers([...users, data]));
+		} catch (error) {
+		} finally {
+			navigate("/");
+		}
 	};
 
 	return (

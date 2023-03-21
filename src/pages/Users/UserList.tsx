@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import axios from "axios";
 import { User } from "../../interfaces/User";
 
 export function UserList() {
 	const [users, setUsers] = useState<User[]>([]);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		axios.get<User[]>("http://localhost:3000/users").then((response) => {
@@ -31,9 +33,14 @@ export function UserList() {
 							<td>{user.name}</td>
 							<td>{user.email}</td>
 							<td>
-								<Link to={`/users/${user.id}`}>
+								<Link to={`/${user.id}/edit`}>
 									<FaEdit />
 								</Link>
+							</td>
+							<td>
+								<button>
+									<FaTrash />
+								</button>
 							</td>
 						</tr>
 					))}
