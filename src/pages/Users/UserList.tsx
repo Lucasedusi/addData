@@ -3,20 +3,16 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import axios from "axios";
 import { User } from "../../interfaces/User";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 
 export function UserList() {
 	const [users, setUsers] = useState<User[]>([]);
 
 	useEffect(() => {
-		const getUser = () => {
-			try {
-				axios.get<User[]>("http://localhost:3000/users").then((response) => {
-					setUsers(response.data);
-				});
-			} catch (error) {
-				console.log(error);
-			}
+		const getUser = async () => {
+			const response = await axios.get("http://localhost:3000/users");
+
+			setUsers(response.data);
 		};
 
 		getUser();
@@ -39,8 +35,18 @@ export function UserList() {
 				marginLeft={"560px"}
 				padding={"20px"}
 			>
-				<Link to={"/create"}>Criar Usuário</Link>
-				<h1>Listagem de Usuários</h1>
+				<Button
+					bg={"#727CF5"}
+					padding={"10px"}
+					margin={"10px"}
+					color={"#fff"}
+					textAlign={"center"}
+					fontSize={"16px"}
+					type="button"
+				>
+					<Link to={"/create"}>Criar Usuário</Link>
+				</Button>
+
 				<table>
 					<thead>
 						<tr>
@@ -72,16 +78,6 @@ export function UserList() {
 					</tbody>
 				</table>
 			</Box>
-			<Text
-				bg={"#727CF5"}
-				padding={"10px"}
-				margin={"10px"}
-				color={"#fff"}
-				textAlign={"center"}
-				fontSize={"16px"}
-			>
-				Listagem de Usuários
-			</Text>
 		</>
 	);
 }

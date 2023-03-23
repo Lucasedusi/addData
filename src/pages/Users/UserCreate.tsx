@@ -22,9 +22,9 @@ export function UserCreate() {
 				email: data.email,
 			};
 
-			await axios
-				.post<User>("http://localhost:3000/users", newProduct)
-				.then(({ data }) => setUsers([...users, data]));
+			await axios.post<User>("http://localhost:3000/users", newProduct);
+
+			setUsers([...users, newProduct]);
 		} catch (error) {
 		} finally {
 			navigate("/");
