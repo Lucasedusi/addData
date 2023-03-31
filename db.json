@@ -4,6 +4,21 @@
       "name": "lucas",
       "email": "ka@mgail",
       "id": 2
+    },
+    {
+      "name": "oi",
+      "email": "tudo b",
+      "select": "",
+      "id": 3
+    },
+    {
+      "name": "Lucas",
+      "email": "Eduardo",
+      "selectedOption": {
+        "value": "option2",
+        "label": "Opção 2"
+      },
+      "id": 4
     }
   ]
 }

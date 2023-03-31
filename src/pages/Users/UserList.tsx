@@ -13,6 +13,7 @@ export function UserList() {
 			const response = await axios.get("http://localhost:3000/users");
 
 			setUsers(response.data);
+			console.log(response.data[2].selectedOption.label);
 		};
 
 		getUser();
@@ -52,29 +53,33 @@ export function UserList() {
 						<tr>
 							<th>Nome</th>
 							<th>E-mail</th>
+							<th>Select</th>
 							<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						{users.map((user) => (
-							<tr key={user.id}>
-								<td>{user.name}</td>
-								<td>{user.email}</td>
-								<td>
-									<Link to={`/${user.id}/edit`}>
-										<FaEdit />
-									</Link>
-								</td>
-								<td>
-									<button
-										type="button"
-										onClick={() => handleRemoveUser(user.id)}
-									>
-										<FaTrash />
-									</button>
-								</td>
-							</tr>
-						))}
+						<>
+							{users.map((user) => (
+								<tr key={user.id}>
+									<td>{user.name}</td>
+									<td>{user.email}</td>
+									{/* <td>{user.selectedOption[].label}</td> */}
+									<td>
+										<Link to={`/${user.id}/edit`}>
+											<FaEdit />
+										</Link>
+									</td>
+									<td>
+										<button
+											type="button"
+											onClick={() => handleRemoveUser(user.id)}
+										>
+											<FaTrash />
+										</button>
+									</td>
+								</tr>
+							))}
+						</>
 					</tbody>
 				</table>
 			</Box>
